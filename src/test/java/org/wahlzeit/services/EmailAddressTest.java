@@ -76,7 +76,6 @@ public class EmailAddressTest extends TestCase {
 
 	@Test
 	public void testEmailSet(){
-		//EmailAddress.instances.clear();
 		String emailString = "test@test.com";
 
 		EmailAddress email = new EmailAddress(emailString);
@@ -87,7 +86,6 @@ public class EmailAddressTest extends TestCase {
 
 	@Test
 	public void testEmailAsInternetAdress() throws AddressException {
-	//	EmailAddress.instances.clear();
 		String emailString = "test@test.com";
 
 		EmailAddress email = new EmailAddress(emailString);
@@ -98,7 +96,6 @@ public class EmailAddressTest extends TestCase {
 
 	@Test
 	public void testEmailIsEqual() throws AddressException {
-		//EmailAddress.instances.clear();
 		String emailString = "test@test.com";
 
 		EmailAddress email = new EmailAddress(emailString);
@@ -111,7 +108,6 @@ public class EmailAddressTest extends TestCase {
 
 	@Test
 	public void testEmailIsValid() throws AddressException {
-		//EmailAddress.instances.clear();
 		String emailString = "test@test.com";
 		String noAtSeparator = "noAtSeparator";
 		String noLocalName = "@noLocalName";
@@ -135,7 +131,6 @@ public class EmailAddressTest extends TestCase {
 
 	@Test
 	public void testAddSameAddress(){
-	//	EmailAddress.instances.clear();
 		String emailString = "test@test.com";
 
 

@@ -7,5 +7,5 @@ import org.wahlzeit.services.mailing.EmailServiceTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({EmailServiceTest.class, EmailAddressTest.class, LogBuilderTest.class})
-public class EmailServiceTestSuite {
+public class emailServiceTestSuite {
 }
