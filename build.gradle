@@ -60,8 +60,10 @@ dependencies {
 
 test {
     filter {
-        includeTestsMatching "org.wahlzeit.*"
+        //includeTestsMatching "org.wahlzeit.*"
+        include "org/wahlzeit/AllTests.class"
     }
+    include "org/wahlzeit/AllTests.class"
     testLogging {
             events "passed", "skipped", "failed"
 

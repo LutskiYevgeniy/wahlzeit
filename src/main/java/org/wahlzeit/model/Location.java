@@ -6,5 +6,4 @@ public class Location {
     public Location(){
         this.coordinate = new Coordinate();
     }
-
 }

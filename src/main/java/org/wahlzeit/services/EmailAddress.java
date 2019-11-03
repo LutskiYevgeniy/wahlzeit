@@ -89,6 +89,10 @@ public class EmailAddress implements Serializable {
 		return value;
 	}
 
+	public String toString() {
+		return value;
+	}
+
 	/**
 	 *
 	 */
@@ -100,7 +104,6 @@ public class EmailAddress implements Serializable {
 		} catch (AddressException ex) {
 			// should not happen
 		}
-
 		return result;
 	}
 
@@ -108,7 +111,7 @@ public class EmailAddress implements Serializable {
 	 * @methodtype boolean-query
 	 */
 	public boolean isEqual(EmailAddress emailAddress) {
-		return this == emailAddress;
+		return this.asString().equals( emailAddress.asString() );
 	}
 
 	/**
@@ -116,12 +119,15 @@ public class EmailAddress implements Serializable {
 	 */
 
 	public boolean isValid() {
-		return !isEmpty();
-	}
+		String myMail = this.asString();
 
+		String regex = "(.+)@(.+)";
+		return myMail.matches(regex);
+	}
 	/**
 	 *
 	 */
+
 	public boolean isEmpty() {
 		return this == EMPTY;
 	}
