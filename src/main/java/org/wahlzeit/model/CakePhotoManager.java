@@ -1,4 +1,4 @@
 package org.wahlzeit.model;
 
-public class CakePhotoManager {
+public class CakePhotoManager extends PhotoManager{
 }

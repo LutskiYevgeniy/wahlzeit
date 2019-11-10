@@ -1,4 +1,4 @@
 package org.wahlzeit.model;
 
-public class CakePhotoFactory {
+public class CakePhotoFactory extends PhotoFactory {
 }
