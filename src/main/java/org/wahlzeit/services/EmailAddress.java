@@ -60,9 +60,7 @@ public class EmailAddress implements Serializable {
 	/**
 	 *
 	 */
-	public static EmailAddress getFromString(String myValue) {
-		return doGetFromString(myValue);
-	}
+	public static EmailAddress getFromString(String myValue) { return doGetFromString(myValue); }
 
 	/**
 	 *

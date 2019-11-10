@@ -63,7 +63,7 @@ test {
         //includeTestsMatching "org.wahlzeit.*"
         include "org/wahlzeit/AllTests.class"
     }
-    include "org/wahlzeit/AllTests.class"
+   // include "org/wahlzeit/AllTests.class"
     testLogging {
             events "passed", "skipped", "failed"
 
