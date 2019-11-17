@@ -4,6 +4,6 @@ public class Location {
     public Coordinate coordinate;
 
     public Location(){
-        this.coordinate = new Coordinate();
+        this.coordinate = new CartesianCoordinates();
     }
 }
