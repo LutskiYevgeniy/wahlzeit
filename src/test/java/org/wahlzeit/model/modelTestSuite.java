@@ -18,6 +18,7 @@ import org.wahlzeit.model.persistence.DatastoreAdapterTest;
         UserStatusTest.class,
         ValueTest.class,
         DatastoreAdapterTest.class,
-        CoordinateTest.class})
+        CartesianCoordinateTest.class,
+        SphericCoordinateTest.class})
 public class modelTestSuite {
 }

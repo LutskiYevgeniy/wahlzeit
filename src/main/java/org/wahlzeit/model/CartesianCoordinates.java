@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 import java.util.Objects;
 
-public class CartesianCoordinates implements Coordinate {
+public class CartesianCoordinates extends AbstractCoordinate {
 
     private double x, y, z;
 
@@ -51,7 +51,7 @@ public class CartesianCoordinates implements Coordinate {
     public CartesianCoordinates asCartesianCoordinate() {
         return this;
     }
-
+/*
     @Override
     public double getCartesianDistance(Coordinate c) {
         CartesianCoordinates cc = c.asCartesianCoordinate();
@@ -60,23 +60,34 @@ public class CartesianCoordinates implements Coordinate {
         double distZ = this.z - cc.z;
         return Math.sqrt( (Math.pow(distX,2) + Math.pow(distY,2) + Math.pow(distZ,2) ) );
     }
-
+*/
     @Override
     public SphericCoordinate asSphericCoordinate() {
         return new SphericCoordinate(this);
     }
-
+/*
     @Override
     public double getCentralAngle(Coordinate c) {
         SphericCoordinate sc = c.asSphericCoordinate();
         SphericCoordinate me = this.asSphericCoordinate();
         return me.getCentralAngle(sc);
     }
+*/
+    @Override
+    protected double computeDistance(Coordinate c) {
+        CartesianCoordinates cc = c.asCartesianCoordinate();
+        double distX = this.x - cc.x;
+        double distY = this.y - cc.y;
+        double distZ = this.z - cc.z;
+        return Math.sqrt( (Math.pow(distX,2) + Math.pow(distY,2) + Math.pow(distZ,2) ) );
+    }
 
     @Override
     public boolean isEqual(Coordinate c) {
         CartesianCoordinates cc = c.asCartesianCoordinate();
-        return equals(c);
+        return Math.abs(cc.getX() - getX()) < 0.0001 &&
+                Math.abs(cc.getY() - getY()) < 0.0001 &&
+                Math.abs(cc.getZ() - getZ()) < 0.0001;
     }
 
 
@@ -85,9 +96,7 @@ public class CartesianCoordinates implements Coordinate {
         if (this == o) return true;
         if (!(o instanceof CartesianCoordinates)) return false;
         CartesianCoordinates that = (CartesianCoordinates) o;
-        return Double.compare(that.getX(), getX()) == 0 &&
-                Double.compare(that.getY(), getY()) == 0 &&
-                Double.compare(that.getZ(), getZ()) == 0;
+        return isEqual(that);
     }
 
     @Override
