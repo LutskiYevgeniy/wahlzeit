@@ -18,6 +18,9 @@ public class CartesianCoordinates extends AbstractCoordinate {
     }
 
     public CartesianCoordinates(SphericCoordinate c) {
+
+        assertIsNonNullArgument(c);
+
         x = c.getRadius() * Math.sin(c.getTheta()) * Math.cos(c.getPhi());
         y = c.getRadius() * Math.sin(c.getTheta()) * Math.sin(c.getPhi());
         z = c.getRadius() * Math.cos(c.getTheta());
@@ -51,34 +54,28 @@ public class CartesianCoordinates extends AbstractCoordinate {
     public CartesianCoordinates asCartesianCoordinate() {
         return this;
     }
-/*
-    @Override
-    public double getCartesianDistance(Coordinate c) {
-        CartesianCoordinates cc = c.asCartesianCoordinate();
-        double distX = this.x - cc.x;
-        double distY = this.y - cc.y;
-        double distZ = this.z - cc.z;
-        return Math.sqrt( (Math.pow(distX,2) + Math.pow(distY,2) + Math.pow(distZ,2) ) );
-    }
-*/
+
     @Override
     public SphericCoordinate asSphericCoordinate() {
         return new SphericCoordinate(this);
     }
-/*
+
     @Override
-    public double getCentralAngle(Coordinate c) {
-        SphericCoordinate sc = c.asSphericCoordinate();
-        SphericCoordinate me = this.asSphericCoordinate();
-        return me.getCentralAngle(sc);
+    protected void assertClassinvariants() {
+        //No restriction here sofar
     }
-*/
+
     @Override
     protected double computeDistance(Coordinate c) {
+        assertIsNonNullArgument(c);
+
         CartesianCoordinates cc = c.asCartesianCoordinate();
         double distX = this.x - cc.x;
         double distY = this.y - cc.y;
         double distZ = this.z - cc.z;
+
+
+
         return Math.sqrt( (Math.pow(distX,2) + Math.pow(distY,2) + Math.pow(distZ,2) ) );
     }
 

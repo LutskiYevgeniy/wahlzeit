@@ -14,9 +14,11 @@ public class SphericCoordinate extends AbstractCoordinate {
         this.radius = radius;
         this.phi = phi;
         this.theta = theta;
+        assertClassinvariants();
     }
 
     public SphericCoordinate(CartesianCoordinates c) {
+        assertIsNonNullArgument(c);
         // x,y,z == 0 ?
         if(c.getX() == 0 && c.getY() == 0 && c.getZ() == 0){
             radius = 0;
@@ -34,7 +36,9 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public void setPhi(double phi) {
+        assertClassinvariants();
         this.phi = phi;
+        assertClassinvariants();
     }
 
     public double getTheta() {
@@ -42,7 +46,9 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public void setTheta(double theta) {
+        assertClassinvariants();
         this.theta = theta;
+        assertClassinvariants();
     }
 
     public double getRadius() {
@@ -50,46 +56,47 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public void setRadius(double radius) {
+        assertClassinvariants();
         this.radius = radius;
+        assertClassinvariants();
     }
 
     @Override
     public CartesianCoordinates asCartesianCoordinate() {
         return new CartesianCoordinates(this);
     }
-/*
-    @Override
-    public double getCartesianDistance(Coordinate c) {
-        CartesianCoordinates cc = c.asCartesianCoordinate();
-        CartesianCoordinates me = this.asCartesianCoordinate();
-        return me.getCartesianDistance(cc);
-    }
-*/
+
     @Override
     public SphericCoordinate asSphericCoordinate() {
         return this;
     }
-/*
-    @Override
-    public double getCentralAngle(Coordinate c) {
-        SphericCoordinate sc = c.asSphericCoordinate();
-        double deltaPhi = Math.abs(getPhi() - sc.getPhi());
-        double deltaTheta = Math.abs(getTheta() - sc.getTheta());
 
-        return Math.acos(Math.sin(getPhi()) * Math.sin(sc.getPhi()) + Math.cos(getPhi()) * Math.cos(sc.getPhi()) * Math.cos(deltaPhi));
+    @Override
+    protected void assertClassinvariants() {
+        assert getRadius() >= 0 &&
+                getTheta() >= -1 &&
+                getTheta() <= 1 &&
+                getPhi() >= -1 &&
+                getPhi() <= 1;
     }
-*/
+
     @Override
     protected double computeDistance(Coordinate c) {
+        assertIsNonNullArgument(c);
+
         SphericCoordinate sc = c.asSphericCoordinate();
         double deltaPhi = Math.abs(getPhi() - sc.getPhi());
         double deltaTheta = Math.abs(getTheta() - sc.getTheta());
 
-        return Math.acos(Math.sin(getPhi()) * Math.sin(sc.getPhi()) + Math.cos(getPhi()) * Math.cos(sc.getPhi()) * Math.cos(deltaPhi));
+        return Math.acos(
+                Math.sin(getPhi()) * Math.sin(sc.getPhi()) +
+                Math.cos(getPhi()) * Math.cos(sc.getPhi()) * Math.cos(deltaPhi) );
     }
 
     @Override
     public boolean isEqual(Coordinate c) {
+        assertIsNonNullArgument(c);
+
         SphericCoordinate cc = c.asSphericCoordinate();
         return Math.abs(cc.getPhi() - getPhi()) < 0.0001 &&
                 Math.abs(cc.getTheta() - getTheta()) < 0.0001 &&
