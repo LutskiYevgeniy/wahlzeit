@@ -81,7 +81,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    protected double computeDistance(Coordinate c) throws NullPointerException{
+    protected double computeDistance(Coordinate c) {
         assertIsNonNullArgument(c);
 
         SphericCoordinate sc = c.asSphericCoordinate();
