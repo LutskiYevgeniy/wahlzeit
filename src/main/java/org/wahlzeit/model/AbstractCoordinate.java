@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 public abstract class AbstractCoordinate implements Coordinate {
 
-    public double getCartesianDistance(Coordinate c) {
+    public double getCartesianDistance(Coordinate c) throws NullPointerException{
         assertIsNonNullArgument(c);
 
         if(this instanceof CartesianCoordinates){
@@ -22,7 +22,7 @@ public abstract class AbstractCoordinate implements Coordinate {
             throw new NullPointerException();
     }
 
-    public double getCentralAngle(Coordinate c) {
+    public double getCentralAngle(Coordinate c) throws NullPointerException{
 
         assertIsNonNullArgument(c);
 
@@ -40,5 +40,5 @@ public abstract class AbstractCoordinate implements Coordinate {
 
     protected abstract void assertClassinvariants();
 
-    protected abstract double computeDistance(Coordinate c);
+    protected abstract double computeDistance(Coordinate c) throws NullPointerException;
 }

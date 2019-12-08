@@ -38,5 +38,14 @@ public class SphericCoordinateTest extends TestCase {
         assertEquals( 1.0 , ret, 0.0001);
     }
 
-
+    @Test(expected = NullPointerException.class)
+    public void testNullArgument(){
+        SphericCoordinate pointA = new SphericCoordinate(1,0,0);
+        try{
+            double ret = pointA.getCentralAngle(null);
+        } catch(NullPointerException e){
+            return;
+        }
+        fail();
+    }
 }

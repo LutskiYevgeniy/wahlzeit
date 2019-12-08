@@ -1,6 +1,7 @@
 package org.wahlzeit.model;
 
 import junit.framework.TestCase;
+import org.junit.Assert.*;
 import org.junit.Test;
 
 public class CartesianCoordinateTest extends TestCase {
@@ -35,6 +36,17 @@ public class CartesianCoordinateTest extends TestCase {
         double ret = pointA.getCartesianDistance(pointASpheric);
 
         assertEquals( 5.0 , ret, 0.001);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testNullArgument(){
+        CartesianCoordinates pointA = new CartesianCoordinates(1,0,0);
+     try{
+         double ret = pointA.getCartesianDistance(null);
+     } catch(NullPointerException e){
+         return;
+     }
+        fail();
     }
 
 }

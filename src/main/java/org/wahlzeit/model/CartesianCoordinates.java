@@ -66,7 +66,7 @@ public class CartesianCoordinates extends AbstractCoordinate {
     }
 
     @Override
-    protected double computeDistance(Coordinate c) {
+    protected double computeDistance(Coordinate c) throws NullPointerException{
         assertIsNonNullArgument(c);
 
         CartesianCoordinates cc = c.asCartesianCoordinate();
