@@ -4,12 +4,13 @@ import junit.framework.TestCase;
 import org.junit.Assert.*;
 import org.junit.Test;
 
+
 public class CartesianCoordinateTest extends TestCase {
 
     @Test
     public void testEqual(){
-        CartesianCoordinates pointA = new CartesianCoordinates(1,2,3);
-        CartesianCoordinates poaintATwice = new CartesianCoordinates(1,2,3);
+        CartesianCoordinates pointA =  CartesianCoordinates.createNew(1,2,3);
+        CartesianCoordinates poaintATwice = CartesianCoordinates.createNew(1,2,3);
         SphericCoordinate sc = pointA.asSphericCoordinate();
 
         assertTrue(pointA.isEqual(poaintATwice));
@@ -17,9 +18,17 @@ public class CartesianCoordinateTest extends TestCase {
     }
 
     @Test
+    public void testValueObj(){
+        CartesianCoordinates pointA =  CartesianCoordinates.createNew(1,2,3);
+        CartesianCoordinates poaintATwice = CartesianCoordinates.createNew(1,2,3);
+
+        assertEquals( 1, CartesianCoordinates.Cartesians.size() );
+    }
+
+    @Test
     public void testDistance(){
-        CartesianCoordinates pointA = new CartesianCoordinates(1,0,0);
-        CartesianCoordinates pointB = new CartesianCoordinates(6,0,0);
+        CartesianCoordinates pointA = CartesianCoordinates.createNew(1,0,0);
+        CartesianCoordinates pointB = CartesianCoordinates.createNew(6,0,0);
 
 
         double distance = pointA.getCartesianDistance(pointB);
@@ -29,8 +38,8 @@ public class CartesianCoordinateTest extends TestCase {
 
     @Test
     public void testDistanceToSpheric(){
-        CartesianCoordinates pointA = new CartesianCoordinates(1,0,0);
-        CartesianCoordinates pointB = new CartesianCoordinates(6,0,0);
+        CartesianCoordinates pointA = CartesianCoordinates.createNew(1,0,0);
+        CartesianCoordinates pointB = CartesianCoordinates.createNew(6,0,0);
         SphericCoordinate pointASpheric = pointB.asSphericCoordinate();
 
         double ret = pointA.getCartesianDistance(pointASpheric);
@@ -40,7 +49,7 @@ public class CartesianCoordinateTest extends TestCase {
 
     @Test(expected = NullPointerException.class)
     public void testNullArgument(){
-        CartesianCoordinates pointA = new CartesianCoordinates(1,0,0);
+        CartesianCoordinates pointA = CartesianCoordinates.createNew(1,0,0);
      try{
          double ret = pointA.getCartesianDistance(null);
      } catch(NullPointerException e){

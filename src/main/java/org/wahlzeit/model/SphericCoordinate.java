@@ -10,7 +10,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     //phi and theta are entered as rad
-    public SphericCoordinate(double radius, double phi, double theta) {
+    private SphericCoordinate(double radius, double phi, double theta) {
         this.radius = radius;
         this.phi = phi;
         this.theta = theta;
@@ -31,6 +31,18 @@ public class SphericCoordinate extends AbstractCoordinate {
         theta = Math.acos(c.getZ() / radius);
     }
 
+    public static SphericCoordinate createNew( double r, double phi, double theta ){
+        String Key = genKey(r, phi, theta);
+        SphericCoordinate result = Spherical.get(Key);
+        if(result == null){//Contains no such element
+            result = new SphericCoordinate(r, phi, theta);
+            Spherical.put(Key, result);
+            return result;
+        }else{
+            return result;
+        }
+    }
+
     public double getPhi() {
         return phi;
     }
@@ -45,24 +57,14 @@ public class SphericCoordinate extends AbstractCoordinate {
         return theta;
     }
 
-    public void setTheta(double theta) {
-        assertClassinvariants();
-        this.theta = theta;
-        assertClassinvariants();
-    }
 
     public double getRadius() {
         return radius;
     }
 
-    public void setRadius(double radius) {
-        assertClassinvariants();
-        this.radius = radius;
-        assertClassinvariants();
-    }
-
     @Override
     public CartesianCoordinates asCartesianCoordinate() {
+
         return new CartesianCoordinates(this);
     }
 

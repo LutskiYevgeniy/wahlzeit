@@ -1,6 +1,16 @@
 package org.wahlzeit.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class AbstractCoordinate implements Coordinate {
+
+    public static Map<String, CartesianCoordinates> Cartesians = new HashMap<String,CartesianCoordinates>();
+    public static Map<String, SphericCoordinate> Spherical = new HashMap<String, SphericCoordinate>();
+
+    public static String genKey(double value1, double value2, double value3){
+        return ( Double.toString(value1) + "," + Double.toString(value2) + "," +Double.toString(value3) );
+    }
 
     public double getCartesianDistance(Coordinate c) throws NullPointerException{
         assertIsNonNullArgument(c);

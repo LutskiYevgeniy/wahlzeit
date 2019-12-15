@@ -1,20 +1,38 @@
 package org.wahlzeit.model;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class CartesianCoordinates extends AbstractCoordinate {
 
     private double x, y, z;
 
+
     public CartesianCoordinates() {
         x = 0;
         y = 0;
         z = 0;
+
     }
-    public CartesianCoordinates(double x, double y, double z) {
+
+    private CartesianCoordinates(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
+
+    }
+
+    public static CartesianCoordinates createNew( double x, double y, double z ){
+        String Key = genKey(x,y,z);
+        CartesianCoordinates result = Cartesians.get(Key);
+        if(result == null){//Contains no such element
+            result = new CartesianCoordinates(x,y,z);
+            Cartesians.put(Key, result);
+            return result;
+        }else{
+            return result;
+        }
     }
 
     public CartesianCoordinates(SphericCoordinate c) {
@@ -24,30 +42,19 @@ public class CartesianCoordinates extends AbstractCoordinate {
         x = c.getRadius() * Math.sin(c.getTheta()) * Math.cos(c.getPhi());
         y = c.getRadius() * Math.sin(c.getTheta()) * Math.sin(c.getPhi());
         z = c.getRadius() * Math.cos(c.getTheta());
+        String Key = genKey(x,y,z);
     }
 
     public double getX() {
         return x;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
     public double getY() {
         return y;
     }
 
-    public void setY(double y) {
-        this.y = y;
-    }
-
     public double getZ() {
         return z;
-    }
-
-    public void setZ(double z) {
-        this.z = z;
     }
 
     @Override

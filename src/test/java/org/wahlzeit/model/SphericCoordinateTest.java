@@ -8,8 +8,8 @@ public class SphericCoordinateTest extends TestCase {
 
     @Test
     public void testEqual(){
-        SphericCoordinate pointA = new SphericCoordinate(5,0.5,0.3);
-        SphericCoordinate pointATwice = new SphericCoordinate(5,0.5,0.3);
+        SphericCoordinate pointA = SphericCoordinate.createNew(5,0.5,0.3);
+        SphericCoordinate pointATwice = SphericCoordinate.createNew(5,0.5,0.3);
         CartesianCoordinates pointACartesian = pointA.asCartesianCoordinate();
 
 
@@ -18,9 +18,17 @@ public class SphericCoordinateTest extends TestCase {
     }
 
     @Test
+    public void testValueObj(){
+        SphericCoordinate pointA =  SphericCoordinate.createNew(5,0.5,0.3);
+        SphericCoordinate poaintATwice = SphericCoordinate.createNew(5,0.5,0.3);
+
+        assertEquals( 1, SphericCoordinate.Spherical.size() );
+    }
+
+    @Test
     public void testDistanceToCartesian(){
-        CartesianCoordinates pointA = new CartesianCoordinates(1,0,0);
-        CartesianCoordinates pointB = new CartesianCoordinates(6,0,0);
+        CartesianCoordinates pointA =  CartesianCoordinates.createNew(1,0,0);
+        CartesianCoordinates pointB =  CartesianCoordinates.createNew(6,0,0);
         SphericCoordinate pointASpheric = pointA.asSphericCoordinate();
 
         double distance = pointASpheric.getCartesianDistance(pointB);
@@ -30,17 +38,17 @@ public class SphericCoordinateTest extends TestCase {
 
     @Test
     public void testDistance(){
-        SphericCoordinate pointA = new SphericCoordinate(1,0.15,0.3);
-        SphericCoordinate pointB = new SphericCoordinate(2,0.15,0.3);
+        SphericCoordinate pointA = SphericCoordinate.createNew(1,0.15,0.3);
+        SphericCoordinate pointB = SphericCoordinate.createNew(2,0.15,0.3);
 
         double ret = pointA.getCartesianDistance(pointB);
 
         assertEquals( 1.0 , ret, 0.0001);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testNullArgument(){
-        SphericCoordinate pointA = new SphericCoordinate(1,0,0);
+        SphericCoordinate pointA = SphericCoordinate.createNew(1,0,0);
         try{
             double ret = pointA.getCentralAngle(null);
         } catch(NullPointerException e){
