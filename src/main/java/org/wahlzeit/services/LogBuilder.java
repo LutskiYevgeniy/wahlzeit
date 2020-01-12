@@ -16,7 +16,6 @@ import java.io.StringWriter;
  * 
  * @review
  */
-@DesignPattern(name ="Command")
 public class LogBuilder {
 
 	protected static final String LEVEL = "level";

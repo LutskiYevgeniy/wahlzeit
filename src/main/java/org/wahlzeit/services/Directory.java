@@ -24,12 +24,13 @@ package org.wahlzeit.services;
 import java.io.File;
 @interface DesignPattern {
 	String name();
+	String[] participants();
 }
 
 /**
  * A class to manage directories.
  */
-@DesignPattern(name = "Composite")
+@DesignPattern(name = "Composite", participants = {"Directory"})
 public class Directory {
 
 	/**
