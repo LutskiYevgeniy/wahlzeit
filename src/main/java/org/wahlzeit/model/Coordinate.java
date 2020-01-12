@@ -1,6 +1,10 @@
 package org.wahlzeit.model;
 
+@interface DesignPattern {
+    String name();
+}
 
+@DesignPattern(name = "State")
 public interface Coordinate {
 
     public CartesianCoordinates asCartesianCoordinate();

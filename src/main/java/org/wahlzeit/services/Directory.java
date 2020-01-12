@@ -20,11 +20,16 @@
 
 package org.wahlzeit.services;
 
+
 import java.io.File;
+@interface DesignPattern {
+	String name();
+}
 
 /**
  * A class to manage directories.
  */
+@DesignPattern(name = "Composite")
 public class Directory {
 
 	/**

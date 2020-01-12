@@ -6,7 +6,6 @@ import org.wahlzeit.model.UserSession;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
 /**
  * Builder class for log messages, that ensures that log messages are all formatted equally.
  *
@@ -17,6 +16,7 @@ import java.io.StringWriter;
  * 
  * @review
  */
+@DesignPattern(name ="Command")
 public class LogBuilder {
 
 	protected static final String LEVEL = "level";

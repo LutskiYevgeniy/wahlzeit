@@ -27,6 +27,7 @@ import org.wahlzeit.utils.EnumValue;
  * A photo may be visible or invisible, it may have been flagged, and it may have been deleted.
  * These states are not mutually exclusive, hence the bitset simulation in this class.
  */
+
 public enum PhotoStatus implements EnumValue {
 
 	/**
